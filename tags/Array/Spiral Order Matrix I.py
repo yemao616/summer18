@@ -20,7 +20,6 @@ class Solution:
     # @return a list of integers
     def spiralOrder(self, A):
         result = []
-        ## Actual code to populate result
         a = 0
         b = len(A)
         c = 0

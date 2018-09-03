@@ -42,3 +42,24 @@ class Solution:
 	            sieve[i*i::2*i] = [False]*((n-i*i)/(2*i)+1)
 	    s = [2] + [i for i in xrange(3, n+1, 2) if sieve[i]]
 	    return s
+
+
+    class Solution:
+    # @param A : integer
+    # @return a list of integers
+    def sieve(self, n):
+        # Sieve of Eratosthenes
+        prime = [True]*(n+1)
+        p =2
+        lis=[]
+        while(p*p <n):
+            if (prime[p] == True):
+                for i in range(p*2,n+1,p):
+                    prime[i] = False
+            p +=1
+        for i in range(2,n):
+            if prime[i]:
+                lis.append(i)
+
+        return lis
+        

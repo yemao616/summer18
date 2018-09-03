@@ -12,6 +12,27 @@
 # NOTE 2: If there is still a tie, then return the segment with minimum starting index
 
 
+
+class Solution:
+    # @param A : list of integers
+    # @return a list of integers
+    def maxset(self, A):
+        i = j = -1
+        start = cur_sum = max_sum = 0
+        for ind, each in enumerate(A):
+            cur_sum += each
+            if each < 0:
+                start = ind+1
+                cur_sum = 0
+
+            elif cur_sum > max_sum or (cur_sum == max_sum and ind-start>j-i):
+                max_sum, i, j = cur_sum, start, ind
+            
+        if i == -1:
+            return []
+        return A[i:j+1]
+
+
 class Solution:
     # @param A : list of integers
     # @return a list of integers
@@ -37,3 +58,27 @@ class Solution:
         lens.append(sum(A[a:end]))
 
         return res[lens.index(max(lens))]
+
+
+
+import collections
+class Solution:
+    # @param A : list of integers
+    # @return a list of integers
+    def maxset(self, A):
+        start = end = 0
+        cur_sum = max_sum = 0
+        tmp = collections.defaultdict(list)
+        for i, each in enumerate(A):
+            if each < 0:
+                tmp[cur_sum].append((start, i-1))
+                start = i+1
+                cur_sum = 0
+                continue
+            cur_sum += each
+            if cur_sum > max_sum:
+                max_sum = cur_sum
+            if i == len(A)-1:
+                tmp[cur_sum].append((start, i))
+        i, j = tmp[max_sum][0]
+        return A[i:j+1]

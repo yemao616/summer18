@@ -21,24 +21,21 @@ def repeatedNumber2(A):
     temp = [-1]
     n = len(A)
     temp.extend([0]*n)
-    print temp
     dup = -1
     for x in A:
         if temp[x] == 0:
             temp[x] = 1
-            print temp[x]
         elif temp[x] == 1:
             dup = x
     return [dup, temp.index(0)]
 
+
 def repeatedNumber(A):
     dup = mis = -100
     B = list(A)
-    print B
     for x in B:
         if B[abs(x) - 1] > 0:
             B[abs(x) - 1] = -B[abs(x) - 1]
-            print B[abs(x) - 1]
         else:
             dup = abs(x)
     for i in xrange(len(B)):
